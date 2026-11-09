@@ -906,4 +906,10 @@ and a modes mode line name is diminished to:
   (add-hook 'rust-mode-hook 'lsp)
   (mrjtjmn/require cargo-mode))
 
+(mrjtjmn/require typst-ts-mode
+  (add-to-list 'treesit-language-source-alist '(typst "https://github.com/uben0/tree-sitter-typst"))
+  (unless (treesit-language-available-p 'typst)
+    (treesit-install-language-grammar 'typst))
+  (add-to-list 'auto-mode-alist '("\\.typ\\'" . typst-ts-mode)))
+
 (when (file-exists-p custom-file) (load custom-file 'noerror))
