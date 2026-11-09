@@ -865,6 +865,7 @@ and a modes mode line name is diminished to:
   (with-eval-after-load 'company (spacemacs|diminish company-mode " ⓒ" " c"))
   (with-eval-after-load 'lsp-mode (spacemacs|diminish lsp-mode " Ⓛ" " L"))
   (with-eval-after-load 'vi-tilde-fringe (spacemacs|diminish vi-tilde-fringe-mode " Ⓥ" " V"))
+  (with-eval-after-load 'outline (spacemacs|diminish outline-minor-mode " ⓞ" " o"))
 
   (add-hook 'spaceline-pre-hook 'spacemacs/diminish-hook))
 
