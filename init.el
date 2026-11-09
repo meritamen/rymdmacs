@@ -403,6 +403,18 @@ FACE defaults to inheriting from default and highlight."
   (with-eval-after-load 'org
     (setf (alist-get "H" org-structure-template-alist nil nil #'equal) "src haskell")))
 
+(progn
+  (require 'treesit)
+
+  (setq treesit-enabled-modes t
+        treesit-language-source-alist
+        '((typst "https://github.com/uben0/tree-sitter-typst")))
+
+  (dolist (pair treesit-language-source-alist)
+    (let ((ts (car pair)))
+      (unless (treesit-language-available-p ts)
+        (treesit-install-language-grammar ts)))))
+
 (mrjtjmn/require exec-path-from-shell
   (when (memq window-system '(mac ns x))
     (require 'exec-path-from-shell)
@@ -907,9 +919,11 @@ and a modes mode line name is diminished to:
   (mrjtjmn/require cargo-mode))
 
 (mrjtjmn/require typst-ts-mode
-  (add-to-list 'treesit-language-source-alist '(typst "https://github.com/uben0/tree-sitter-typst"))
-  (unless (treesit-language-available-p 'typst)
-    (treesit-install-language-grammar 'typst))
-  (add-to-list 'auto-mode-alist '("\\.typ\\'" . typst-ts-mode)))
+  (setq typst-ts-watch-options "--open"
+        typst-ts-mode-enable-raw-blocks-highlight t)
+
+  (with-eval-after-load 'typst-ts-mode
+    (keymap-set typst-ts-mode-map "C-c C-c" #'typst-ts-tmenu)))
+
 
 (when (file-exists-p custom-file) (load custom-file 'noerror))
