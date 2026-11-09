@@ -28,6 +28,7 @@
 (global-set-key (kbd "<f9>") 'compile)
 (global-set-key (kbd "C-j") 'join-line)
 (global-set-key (kbd "M-j") (lambda () (interactive) (join-line -1)))
+(global-set-key (kbd "C-`") 'repeat)
 
 (defun mrjtjmn/delete-current-file-and-buffer ()
   "Delete the file associated with the current buffer and kill the buffer."
@@ -747,14 +748,14 @@ match that of the file."
 (mrjtjmn/require git-timemachine (global-set-key (kbd "C-c g") 'git-timemachine-toggle))
 
 (mrjtjmn/require string-inflection
-  (global-set-key (kbd "C-` `") 'string-inflection-all-cycle)
-  (global-set-key (kbd "C-` t") 'string-inflection-toggle)
-  (global-set-key (kbd "C-` c") 'string-inflection-camel-case)
-  (global-set-key (kbd "C-` d") 'string-inflection-lower-camel-case)
-  (global-set-key (kbd "C-` k") 'string-inflection-kebab-case)
-  (global-set-key (kbd "C-` _") 'string-inflection-snake-case)
-  (global-set-key (kbd "C-` u") 'string-inflection-capital-snake-case)
-  (global-set-key (kbd "C-` U") 'string-inflection-upcase))
+  (global-set-key (kbd "C-~ ~") 'string-inflection-all-cycle)
+  (global-set-key (kbd "C-~ t") 'string-inflection-toggle)
+  (global-set-key (kbd "C-~ c") 'string-inflection-camel-case)
+  (global-set-key (kbd "C-~ d") 'string-inflection-lower-camel-case)
+  (global-set-key (kbd "C-~ k") 'string-inflection-kebab-case)
+  (global-set-key (kbd "C-~ _") 'string-inflection-snake-case)
+  (global-set-key (kbd "C-~ u") 'string-inflection-capital-snake-case)
+  (global-set-key (kbd "C-~ U") 'string-inflection-upcase))
 
 (mrjtjmn/require treemacs
   (global-set-key (kbd "M-0") 'treemacs-select-window)
@@ -925,6 +926,5 @@ and a modes mode line name is diminished to:
 
   (with-eval-after-load 'typst-ts-mode
     (keymap-set typst-ts-mode-map "C-c C-c" #'typst-ts-tmenu)))
-
 
 (when (file-exists-p custom-file) (load custom-file 'noerror))
