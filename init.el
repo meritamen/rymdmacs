@@ -120,8 +120,8 @@
       read-process-output-max (* 4 1024 1024)
       warning-minimum-level :error
       custom-file (expand-file-name "custom.el" user-emacs-directory)
-      mac-command-modifier 'meta
-      mac-option-modifier 'super
+      mac-command-modifier 'super
+      mac-option-modifier 'meta
       confirm-kill-processes nil
       confirm-nonexistent-file-or-buffer nil
       window-resize-pixelwise t
@@ -399,10 +399,7 @@ FACE defaults to inheriting from default and highlight."
    'org-babel-load-languages
    '((haskell . t)))
 
-  (setq org-src-content-indentation 0)
-
-  (with-eval-after-load 'org
-    (setf (alist-get "H" org-structure-template-alist nil nil #'equal) "src haskell")))
+  (setq org-src-content-indentation 0))
 
 (progn
   (require 'treesit)
